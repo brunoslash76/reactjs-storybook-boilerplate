@@ -1,3 +1,38 @@
+## Estrutura de pastas do boilerplate
+Usando o conceito do atomic design, os componentes, templates e páginas tratam do menos ao maior conjunto.
+Teremos **somente** 3 camadas de componentes. Isso é importante frizar pois a arquitetura desse boilerplate está desenhada para seguir esse padrão, caso contrário o codebase pode se tornar inviável.
+
+Cada elemento tem sua função e responsabilidades, ao sair desse contexto a aplicação pode virar macarronica ou POC (prgramação orientada a cebola).
+
+LEIA TUDO E SIGA O PADRÃO PARA NÃO CHORARMOS JUNTOS.
+
+Esse boilerplate usa como padrão o context api, é focado para aplicações de pequeno e médio porte com poucos gerenciadores de estado globais (contexts) se pensarem em usar para aplicações maiores solicito que seja repensado XD.
+
+#### - Components
+Essa pasta ela contém  componentes reutilizáveis e são de âmbito micro, por exemplom inputs, butões, parágrafos, containers.
+A ideia é deixar todos os componentes micro aqui dentro para ser utilizado pelos Templates.
+
+Em componentes o máximo de composição que acontece é reduzir algum componete externo que requer muitas configurações ou composições para fazer moléculas por exemplo, criar um form control com ```<input/>``` ```<label/>``` e uma ```<div />``` ou criação de componentes compostos de outros componentes que se repetirão mas serão "burros".
+
+#### - Templates
+Os templates são como containers onde criamos e especificamos as regras de negócios, fazemos chamadas para API's, são componentes com fazem a composição dos componentes expostos pela pasta de COMPONENTES e a maior parte do código será escrito aqui.
+
+#### - Pages
+As pages são os componentes macro que serão compostos por templates. Serão os containers que compartilharão alguns poucos estados. Os componentes Page eles tem de zero a muito pouca lógica acontecendo dentro deles. Eles servem de delegadores de ações e estados que sejam compartilhados entre os templates únicos da Page.
+
+**IMPORTANTE**: Não existem outras camadas além das PAGES, TEMPLATES e COMPONENTS.
+Componentes são átomos/moléculas, Templates são órgãos e Components são organismos.
+
+Por exemplo:
+Uma Page é composta de um FORM e uma TABLE. A TABLE depende do retorno do form, logo a PAGE será incumbida de passar para o form o setter desse retorno para mandar para a TABLE.
+
+                                PAGES
+                                /   \
+                        TEMPLATES   TEMPLATES
+                        /   \         /   \
+                    COMPONENTS      COMPONENTS
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -42,3 +77,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
